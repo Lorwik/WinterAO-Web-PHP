@@ -1,4 +1,12 @@
-<!--<hr class="regBoxBar">-->
+<!DOCTYPE html>
+<html>
+	<?php include_once 'inc/header.php'; ?>
+
+	<body>
+		<div class="form-body">
+			<?php include_once 'inc/menu.php'; ?>
+
+			<!--<hr class="regBoxBar">-->
 			<div class="container">
 				<!-- Form -->
 				<form action="?" method="POST" accept-charset="utf-8" class="form-horizontal" role="form">
@@ -7,22 +15,22 @@
 						<p>Y participa en una gran aventura.</p>
 					</div>
 
-					<div class="form-group">
-						<label for="email" class="col-sm-3 control-label">Email: </label>
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 col-form-label">Email: </label>
 						<div class="col-sm-9">
 							<input type="email" name="email" class="form-control" autofocus>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="password" class="col-sm-3 control-label">Password: </label>
+					<div class="form-group row">
+						<label for="password" class="col-sm-2 col-form-label">Password: </label>
 						<div class="col-sm-9">
 							<input type="password" name="password" class="form-control" placeholder="6 a 24 caracteres.">
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="repassword" class="col-sm-3 control-label">Repetir Contraseña</label>
+					<div class="form-group row">
+						<label for="repassword" class="col-sm-2 col-form-label">Repetir Contraseña</label>
 						<div class="col-sm-9">
 							<input type="password" name="repassword" class="form-control">
 						</div>
@@ -34,7 +42,7 @@
 
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" name="checkTerms" id="checkTerms">
-						<label class="form-check-label" for="checkTerms">Confirmo haber leido y aceptar el <a href="http://winterao.com.ar/wiki/index.php?title=Reglamento">reglamento</a></label>
+						<label class="form-check-label" for="checkTerms"> Confirmo haber leido y aceptar el <a href="http://winterao.com.ar/wiki/index.php?title=Reglamento">reglamento</a></label>
 					</div>
 
 					<p class="center"><input type="submit" value="Registrar" class="btn btn-primary btn-lg"></p>
@@ -58,7 +66,7 @@
 
 							//Si el registro de cuentas esta desactivado no seguimos
 							if ($registroactivo == 0){
-								$errormsg = "En estos momentos el registro de cuentas nuevas esta desactivado. Intentelo más tarde.";
+								$errormsg = "En estos momentos el registro de cuentas esta desactivado. Intentelo más tarde.";
 								$error = true;
 							}else{
 
@@ -132,5 +140,8 @@
 					?>
 				</form>
 			</div>
-
-			<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		</div>
+	</body>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<?php include_once "inc/footer.php"; ?>
+</html>
