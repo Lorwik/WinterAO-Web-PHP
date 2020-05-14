@@ -17,7 +17,6 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title><?php echo $titulo; ?></title>
@@ -26,7 +25,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-md-8">
-	                <h2>WinterAO Resurrection</h2>
+	                
 	            </div>
 	        </div>
 	    </div>

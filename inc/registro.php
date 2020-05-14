@@ -37,7 +37,7 @@
 						<label class="form-check-label" for="checkTerms">Confirmo haber leido y aceptar el <a href="http://winterao.com.ar/wiki/index.php?title=Reglamento">reglamento</a></label>
 					</div>
 
-					<p class="center"><input type="submit" value="Registrar" onclick="login()" class="btn btn-primary btn-lg"></p>
+					<p class="center"><input type="submit" value="Registrar" class="btn btn-primary btn-lg"></p>
 
 					<?php			
 						if (isset($_POST["email"])){
@@ -56,46 +56,53 @@
 							//Iniciamos la bandera error
 							$error = false;
 
-							//¿Se dejo algun campo vacio?
-							if (($emailForm == "") || ($passForm == "")){
-								$errormsg = "¡Debes rellenar todos los campos!";
+							//Si el registro de cuentas esta desactivado no seguimos
+							if ($registroactivo == 0){
+								$errormsg = "En estos momentos el registro de cuentas nuevas esta desactivado. Intentelo más tarde.";
 								$error = true;
+							}else{
+
+								//¿Se dejo algun campo vacio?
+								if (($emailForm == "") || ($passForm == "")){
+									$errormsg = "¡Debes rellenar todos los campos!";
+									$error = true;
+								}
+
+								//¿Coinciden las contraseñas?
+								if ($passForm <> $repassForm){
+									$errormsg = "Las contraseñas no coinciden";
+									$error = true;
+								}
+
+								//¿El Email cumple un minimo de caracteres?
+								if ((strlen($emailForm) < 7) || (strlen($emailForm) > 32)){
+									$errormsg = "El email debe tener entre 7 a 32 caracteres.";
+									$error = true;
+								}
+
+								//¿Las contraseñas cumplen un minimo de caracteres?
+								if ((strlen($passForm) < 6) || (strlen($passForm) > 24)){
+									$errormsg = "La contraseña debe tener entre 6 a 24 caracteres.";
+									$error = true;
+								}
+
+								//¿Acepto los terminos?
+								if($_POST['checkTerms'] == 'on') {
+								} else {
+								   	$errormsg = "Debes aceptar el reglamento.";
+									$error = true;
+								}
+
+								include("includes/user.php");
+								$user = new user();
+
+								//¿El usuario ya fue registrado?
+								if ($user->ExisteUsuario($emailForm) == true){
+									$errormsg = "Ya hay una cuenta con ese email registrado.";
+									$error = true;
+								}
+
 							}
-
-							//¿Coinciden las contraseñas?
-							if ($passForm <> $repassForm){
-								$errormsg = "Las contraseñas no coinciden";
-								$error = true;
-							}
-
-							//¿El Email cumple un minimo de caracteres?
-							if ((strlen($emailForm) < 7) || (strlen($emailForm) > 32)){
-								$errormsg = "El email debe tener entre 7 a 32 caracteres.";
-								$error = true;
-							}
-
-							//¿Las contraseñas cumplen un minimo de caracteres?
-							if ((strlen($passForm) < 6) || (strlen($passForm) > 24)){
-								$errormsg = "La contraseña debe tener entre 6 a 24 caracteres.";
-								$error = true;
-							}
-
-							//¿Acepto los terminos?
-							if($_POST['checkTerms'] == 'on') {
-							} else {
-							   	$errormsg = "Debes aceptar el reglamento.";
-								$error = true;
-							}
-
-							include("includes/user.php");
-							$user = new user();
-
-							//¿El usuario ya fue registrado?
-							if ($user->ExisteUsuario($emailForm) == true){
-								$errormsg = "Ya hay una cuenta con ese email registrado.";
-								$error = true;
-							}
-
 
 							//¿Se produjo algun error?
 							if ($error == false){
@@ -120,7 +127,10 @@
 
 								$error = false;
 							}
+
 						}
 					?>
 				</form>
 			</div>
+
+			<script src="https://www.google.com/recaptcha/api.js" async defer></script>
