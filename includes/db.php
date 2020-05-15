@@ -11,7 +11,7 @@ class DB{
         $this->host     = '217.216.5.184';
         $this->db       = 'winterao';
         $this->user     = 'winter';
-        $this->password = "123";
+        $this->password = "5w32d32J3oLZrEY7";
         $this->charset  = 'utf8mb4';
     }
 
@@ -29,7 +29,10 @@ class DB{
             return $pdo;
 
         }catch(PDOException $e){
-            print_r('Error connection: ' . $e->getMessage());
+           print_r('<div class="alert alert-danger" role="alert">Error al registrar la cuenta, intentalo mas tarde o ponte en contacto con un administrador.</div>');
+
+            //No mostramos los errores de SQL
+            //print_r('Error connection: ' . $e->getMessage());
         }   
     }
     

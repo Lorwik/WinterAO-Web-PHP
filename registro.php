@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<?php include_once 'inc/header.php'; ?>
-
+	<head>
+		<?php include_once 'inc/header.php'; ?>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	</head>
+	
 	<body>
 		<div class="form-body">
 			<?php include_once 'inc/menu.php'; ?>
@@ -118,7 +121,7 @@
 									//Si llegamos aqui, creamos el usuario
 									if ($user->createUser($emailForm, $passForm)){
 										echo '<div class="alert alert-success" role="alert">';
-										echo "¡Registro completado!";
+										echo "¡Enohorabuena! hemos registrado tu cuenta, ahora solo debes confirmarla en el email que te hemos enviado.";
 										echo '</div>';
 									}else{
 										echo "Error al registrar la cuenta, intentalo mas tarde o ponte en contacto con un administrador.";
@@ -142,6 +145,5 @@
 			</div>
 		</div>
 	</body>
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-	<?php include_once "inc/footer.php"; ?>
+<?php include_once "inc/footer.php"; ?>
 </html>

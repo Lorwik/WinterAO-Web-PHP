@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<?php include_once 'inc/header.php'; ?>
+	<head>
+		<?php include_once 'inc/header.php'; ?>
+	</head>
 
 	<body>
 		<div class="form-body">

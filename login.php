@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<?php include_once 'inc/header.php'; ?>
-
+	<head>
+		<?php include_once 'inc/header.php'; ?>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	</head>
 	<body>
 		<div class="form-body">
 			<?php include_once 'inc/menu.php'; ?>
@@ -41,6 +43,5 @@
 		</div>
 	</body>
 
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<?php include_once "inc/footer.php"; ?>
 </html>

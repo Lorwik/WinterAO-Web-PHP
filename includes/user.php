@@ -113,15 +113,29 @@ class User extends DB{
     public function createUser($user, $pass){
 		$salt = $this->generateRandomString();
 		$hash = $this->generateRandomString(32);
+        $verifycode = $this->generateRandomString(32);
         $hashpass = hash('sha256', $pass . $salt);
-        $query = $this->connect()->prepare("INSERT INTO account (username, password, salt, hash) VALUES ('$user', '$hashpass', '$salt', '$hash')");
+        $query = $this->connect()->prepare("INSERT INTO account (username, password, salt, hash, id_confirmacion) VALUES ('$user', '$hashpass', '$salt', '$hash', '$verifycode')");
         $query->execute();
 
-        if($query->rowCount()){
+        if($query->rowCount($user, $verifycode)){
+            sendverifyemail(); //Enviamos el email con la verificacion
             return true;
         }else{
             return false;
         }
+    }
+
+    //Enviamos el email con la verificacion
+    public function sendverifyemail($user, $codigo){
+        ini_set( 'display_errors', 1 );
+        error_reporting( E_ALL );
+        $from = "no-reply@winterao.com.ar";
+        $to = $user;
+        $subject = "Confirmación de registro de cuenta de WinterAO Resurrection";
+        $message = "¡Felicidades! ¡Has creado tu cuenta en WinterAO! Solo debes verificar tu cuenta ingresando el siguiente codigo: ".$codigo ;
+        $headers = "From:" . $from;
+        mail($to,$subject,$message, $headers);
     }
 
     public function getUserName(){
