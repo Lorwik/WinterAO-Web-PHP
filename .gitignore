@@ -1,0 +1,7 @@
+### Sublime Text ###
+.phpintel
+
+### Composer ###
+composer.phar
+/vendor/
+composer.lock

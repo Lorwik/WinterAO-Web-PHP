@@ -1,0 +1,22 @@
+{
+	"name": "winter-ao/web",
+	"description": "Codigo fuente oficial de la página Web de WinterAO Resurrection",
+	"license": "proprietary",
+	"authors": [
+        {
+            "name": "Lorwik",
+            "role": "Developer"
+        },
+        {
+            "name": "Jopi",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "voku/anti-xss": "^4.1",
+        "riimu/kit-csrf": "^2.4",
+        "mattketmo/email-checker": "^2.0",
+		"paypal/paypal-checkout-sdk": "^1.0",
+		"phpmailer/phpmailer": "^6.1"
+    }
+}
